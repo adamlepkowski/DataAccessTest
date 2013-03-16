@@ -20,6 +20,9 @@ namespace DataAccessTest
 
             //test generic repository by method
             TestGenericRepositoryByMethod();
+
+            //test execution query without any repository code
+            TestSpecyficationWithoutRepository();
         }
 
         static void TestGenericRepositoryByType()
@@ -87,6 +90,41 @@ namespace DataAccessTest
             //execute query by specyfication with paramter
             {
                 var data = repository.Find<User>(new UserOlderThanSpecyfication(18));
+                showAllUsers(data, "Only adult users");
+            }
+        }
+
+        static void TestSpecyficationWithoutRepository()
+        {
+            Console.WriteLine("\nTestSpecyficationWithoutRepository");
+
+            //create repository for User entity
+            var context = new DatabaseContext();
+
+            Action<IEnumerable<User>, string> showAllUsers = ((x, message) =>
+            {
+                Console.WriteLine("\n" + message);
+                foreach (var user in x)
+                {
+                    DisplayUser(user);
+                }
+            });
+
+            //retrieve all users from Table
+            {
+                var data = context.Users;
+                showAllUsers(data, "All users");
+            }
+
+            //execute query by specyfication
+            {
+                var data = context.Users.Where(new UserWithActiveAccountSpecyfication().IsSatisfiedBy);
+                showAllUsers(data, "Only Active users - using specyfication");
+            }
+
+            //execute query by specyfication with paramter
+            {
+                var data = context.Users.Where(new UserOlderThanSpecyfication(18).IsSatisfiedBy);
                 showAllUsers(data, "Only adult users");
             }
         }
