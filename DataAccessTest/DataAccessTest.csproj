@@ -59,6 +59,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DatabaseContext.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Model\User.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -69,7 +75,6 @@
   <ItemGroup>
     <Folder Include="GenericRepositoryByMethod\" />
     <Folder Include="GenericRepositoryByType\" />
-    <Folder Include="Model\" />
     <Folder Include="Specyfication\" />
     <Folder Include="WithoutRepository\" />
   </ItemGroup>
