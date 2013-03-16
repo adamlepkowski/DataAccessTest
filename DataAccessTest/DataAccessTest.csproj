@@ -62,11 +62,29 @@
     <Compile Include="DatabaseContext.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="GenericRepositoryByType\GenericRepositoryByType.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GenericRepositoryByType\IGenericRepositoryByType.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Model\User.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Specyfication\ISpecification.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Specyfication\Specification.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Specyfication\UserOlderThanSpecyfication.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Specyfication\UserWithActiveAccountSpecyfication.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -74,8 +92,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="GenericRepositoryByMethod\" />
-    <Folder Include="GenericRepositoryByType\" />
-    <Folder Include="Specyfication\" />
     <Folder Include="WithoutRepository\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
