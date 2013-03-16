@@ -6,7 +6,7 @@ using DataAccessTest.Specyfication;
 namespace DataAccessTest.GenericRepositoryByType
 {
     //NOTE: This repository can be easly extended
-    public interface IGenericRepositoryByType<TEntity> where TEntity : class
+    public interface IGenericRepositoryByType<TEntity> : IDisposable where TEntity : class
     {
         IEnumerable<TEntity> FindAll();
         IEnumerable<TEntity> FindBy(Expression<Func<TEntity, bool>> predicate);

@@ -62,6 +62,12 @@
     <Compile Include="DatabaseContext.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="GenericRepositoryByMethod\GenericRepositoryByMethod.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GenericRepositoryByMethod\IGenericRepositoryByMethod.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="GenericRepositoryByType\GenericRepositoryByType.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -90,10 +96,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="GenericRepositoryByMethod\" />
-    <Folder Include="WithoutRepository\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using DataAccessTest.GenericRepositoryByType;
+using RBM = DataAccessTest.GenericRepositoryByMethod;
 using DataAccessTest.Model;
 using DataAccessTest.Specyfication;
 
@@ -13,13 +15,16 @@ namespace DataAccessTest
             //Create default data 
             InitiallData();
 
-            //run generic repository by typ
+            //test generic repository by typ
             TestGenericRepositoryByType();
 
+            //test generic repository by method
+            TestGenericRepositoryByMethod();
         }
 
         static void TestGenericRepositoryByType()
         {
+            Console.WriteLine("\nTestGenericRepositoryByType");
             //create repository for User entity
             var repository = new GenericRepositoryByType<User>(new DatabaseContext());
 
@@ -47,6 +52,41 @@ namespace DataAccessTest
             //execute query by specyfication with paramter
             {
                 var data = repository.Find(new UserOlderThanSpecyfication(18));
+                showAllUsers(data, "Only adult users");
+            }
+        }
+
+        static void TestGenericRepositoryByMethod()
+        {
+            Console.WriteLine("\nTestGenericRepositoryByMethod");
+
+            //create repository for User entity
+            var repository = new RBM.GenericRepositoryByMethod(new DatabaseContext());
+
+            Action<IEnumerable<User>, string> showAllUsers = ((x, message) =>
+            {
+                Console.WriteLine("\n" + message);
+                foreach (var user in x)
+                {
+                    DisplayUser(user);
+                }
+            });
+
+            //retrieve all users from Table
+            {
+                var data = repository.FindAll<User>();
+                showAllUsers(data, "All users");
+            }
+
+            //execute query by specyfication
+            {
+                var data = repository.Find<User>(new UserWithActiveAccountSpecyfication());
+                showAllUsers(data, "Only Active users - using specyfication");
+            }
+
+            //execute query by specyfication with paramter
+            {
+                var data = repository.Find<User>(new UserOlderThanSpecyfication(18));
                 showAllUsers(data, "Only adult users");
             }
         }
